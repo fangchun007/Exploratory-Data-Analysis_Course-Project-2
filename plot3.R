@@ -24,10 +24,11 @@ baltimore # check the result
 ## Plot ##
 library(ggplot2)
 g <- ggplot(baltimore, aes(as.factor(year), Emissions, fill = type))  # Building Up in Layers
-g + geom_bar(stat = "identity") # First Plot with Bar Layer
-g + geom_bar(stat = "identity") + facet_grid(. ~ type) # Adding More Layers: Facets
-g + geom_bar(stat = "identity") + facet_grid(. ~ type) + labs(x = "Year", y = "Total PM2.5 emissions (Tons)" )
-    + labs(title = "PM2.5 emissions via different sources for Baltimore City (1999-2008)") # Modifying Labels
+g1 <- g + geom_bar(stat = "identity") # First Plot with Bar Layer
+g2 <- g1 + facet_grid(. ~ type) # Adding More Layers: Facets
+g3 <- g2 + labs(x = "Year", y = "Total PM2.5 emissions (Tons)" )
+g4 <- g3 + labs(title = "PM2.5 emissions via different sources for Baltimore City (1999-2008)") # Modifying Labels
+g4
 
 dev.copy(png, file = "plot3.png")  # save the png file
 dev.off()

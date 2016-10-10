@@ -1,0 +1,25 @@
+# Question 3.
+# Of the four types of sources indicated by the 𝚝𝚢𝚙𝚎 (point, nonpoint, onroad, nonroad) 
+# variable, which of these four sources have seen decreases in emissions from 1999–2008
+# for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the 
+# ggplot2 plotting system to make a plot answer this question.
+
+## Load data ##
+# make sure the files "summarySCC_PM25.rds" and "Source_Classification_Code.rds" are
+# under the work directory. Otherwise, use Misc (for Mac) or setwd() to reset the
+# current work directory.
+
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+Bal_NEI <- subset(NEI, fips == "24510")
+
+# We will use dplyr package to help in data preprocessing
+
+library(dplyr)
+baltimore <- group_by(Bal_NEI, year, type) %>%
+    summarise(Emissions = sum(Emissions))
+baltimore # check the result
+
+## Plot ##
+library(ggplot2)
+g <- ggplot(baltimore, aes(year, Emissions, color = type)) + geom_line() 

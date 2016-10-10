@@ -37,9 +37,26 @@ coal6 <- grep("coal", SCC$SCC.Level.Four, ignore.case = TRUE)
 coal_related <- unique(c(coal1, coal2, coal5, coal6))
 SCC_coal <- SCC[coal_related, ]
 NEI_coal <- NEI[NEI$SCC %in% SCC_coal$SCC, ]
-dim(NEI_coal) # check  
+dim(NEI_coal) # check 
 
 ## Plot ##
+
+NEI_coal_year <- data.frame(with(NEI_coal, tapply(Emissions, year, sum)))
+
+g <- ggplot(NEI_coal_year, aes(rownames(NEI_coal_year), NEI_coal_year / 10^5)) # Building up in layers
+g1 <- g + geom_bar(stat = "identity", width = 0.6, color = "#CC9980", fill = "#85A3E0") # First plot with Bar Layer
+g2 <- g1 + labs(x = "Year", y = "Total coal related PM2.5 Emissions (10^5 Tons)") # Modifying Labels
+g3 <- g2 + labs(title = "Total PM2.5 emissions from coal combustion-related sources in US from 1999–2008")
+
+dev.copy(png, file = "plot4.png") # save the plot
+dev.off()
+
+
+
+
+
+
+
 
 
 

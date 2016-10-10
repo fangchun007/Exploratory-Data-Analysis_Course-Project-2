@@ -10,7 +10,8 @@
 # current work directory.
 
 NEI <- readRDS("summarySCC_PM25.rds")
-SCC <- readRDS("Source_Classification_Code.rds")
+# SCC <- readRDS("Source_Classification_Code.rds")
+# SCC is not used in this question
 Bal_NEI <- subset(NEI, fips == "24510")
 
 # We will use dplyr package to help in data preprocessing

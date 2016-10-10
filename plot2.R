@@ -10,8 +10,15 @@
 
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
+Bal_NEI <- subset(NEI, fips == "24510")
 
-## Check the structures ## 
+## Plot ## 
 
-head(NEI, n = 3)
-head(SCC, n = 3)
+Bal_NEI_year <- with(Bal_NEI, tapply(Emissions, year, sum))
+barplot(Bal_NEI_year,
+    names.arg = names(Bal_NEI_year),
+    xlab = "Year",
+    ylab = "PM2.5 Emissions (Tons)",
+    main = "Total PM2.5 Emissions from Baltimore City")
+dev.copy(png, file = "plot2.png")
+dev.off()

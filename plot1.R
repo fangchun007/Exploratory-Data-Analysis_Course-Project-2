@@ -29,5 +29,9 @@ dev.copy(png, file = "plot1.png")
 dev.off()
 
 ## Note ##
-# I tried to use function plot to finish the job, but it result with an ugly picture. So I gave up.
+# PS. 1. I tried to use function plot to finish the job, but it result with an ugly picture. So I gave up.
 # plot(names(pm25_year), pm25_year / 10^6, type = "l", xlab = "Year", ylab = "Total PM2.5 Emissions")
+# PS. 2. Personally, I think my answer is not strict. Suppose there exist some observation sites, who 
+# collect data only for year 2012 but no data for other years. Then my answer possibly will cause a skewness.
+# So it better to do relevant checking before that. 
+# better to do similar checking before 
